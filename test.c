@@ -1,3 +1,4 @@
+#include "assert.h"
 #include "stdio.h"
 
 int main(void)
@@ -6,5 +7,6 @@ int main(void)
 	fprintf(f, "Hello World\n");
 	fclose(f);
 
+	assert(0);
 	return 0;
 }
