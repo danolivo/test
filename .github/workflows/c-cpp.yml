@@ -2,9 +2,10 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   build:
@@ -16,7 +17,11 @@ jobs:
     - name: "Echo parameters"
       run: |
         echo "-> REPO:" $GITHUB_REPOSITORY_OWNER $GITHUB_REPOSITORY $GITHUB_REF
-        echo "-> Link: " "https://github.com/"$GITHUB_REPOSITORY".git#"$GITHUB_REF
+        echo "-> Link: " "https://github.com/"$GITHUB_REPOSITORY".git"
+        echo "->Branches:" $GITHUB_REF $BRANCH_NAME
+        git clone "https://github.com/"$GITHUB_REPOSITORY".git" abc
+        cd abc
+        git checkout $GITHUB_REF
     - name: Compile
       run: gcc test.c
     - name: run
