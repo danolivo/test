@@ -10,9 +10,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v3
+    - name: "Echo parameters"
+      run: echo context.repo.owner context.repo.repo $GITHUB_REF
+      run: gcc test.c
     - name: Compile
       run: gcc test.c
     - name: run
