@@ -19,12 +19,9 @@ jobs:
         echo "-> REPO:" $GITHUB_REPOSITORY_OWNER $GITHUB_REPOSITORY $GITHUB_REF
         echo "-> Link: " "https://github.com/"$GITHUB_REPOSITORY".git"
         echo "->Branches:" $GITHUB_REF $BRANCH_NAME
-        ls -la
-        git log
-        echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
-#        git clone "https://github.com/"$GITHUB_REPOSITORY".git" abc
-#        cd abc
-#        git checkout $GITHUB_REF
+        git clone "https://github.com/"$GITHUB_REPOSITORY".git" abc
+        cd abc
+        git checkout $GITHUB_REF
     - name: Compile
       run: gcc test.c
     - name: run
